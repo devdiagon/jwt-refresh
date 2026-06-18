@@ -27,7 +27,7 @@ export class JwtService {
      */
     static signToken(payload) {
         const secret = resolveSecret(config.ALGORITHM, 'sign');
-        return jwt.sign(payload, secret, { algorithm: config.ALGORITHM, expiresIn: '1h' });
+        return jwt.sign(payload, secret, { algorithm: config.ALGORITHM, expiresIn: '1m' });
     }
 
     /**
