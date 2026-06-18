@@ -7,7 +7,7 @@ export class AuthController {
     static async generateToken(req, res) {
         const { username, password } = req.body;
 
-        if (username !== 'admin' || password !== 'admin123') {
+        if (username !== 'Fred' || password !== 'mecomi2manzanas') {
             return res.status(401).json({ message: 'Usuario o contraseña incorrectos' });
         }
 
