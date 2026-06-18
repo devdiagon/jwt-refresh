@@ -11,8 +11,12 @@ export class AuthController {
             return res.status(401).json({ message: 'Usuario o contraseña incorrectos' });
         }
 
-        const payload = { sub: username, role: 'admin' };
-        const token = JwtService.signToken(payload);
-        res.json({ token });
+        try {
+            const payload = { sub: username, role: 'admin' };
+            const token = JwtService.signToken(payload);
+            res.json({ token });
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+        }
     }
 }

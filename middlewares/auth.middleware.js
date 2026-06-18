@@ -6,10 +6,12 @@ export const authMiddleware = (req, res, next) => {
 
     if (!token) return res.status(401).json({ message: 'Token no proporcionado' });
 
-    const payload = JwtService.verifyToken(token);
-
-    if (!payload) return res.status(403).json({ message: 'Token inválido o expirado' });
-
-    req.user = payload;
-    next();
+    try {
+        const payload = JwtService.verifyToken(token);
+        if (!payload) return res.status(403).json({ message: 'Token inválido o expirado' });
+        req.user = payload;
+        next();
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 };
