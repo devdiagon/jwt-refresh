@@ -1,9 +1,12 @@
+import * as Sentry from '@sentry/node';
+
 export class ResourceController {
     /**
      * Simula un recurso privado del Microservicio Alpha.
      */
     static getAlphaPrivateData(req, res) {
-        res.json({ message: 'Acceso exitoso al Microservicio Alpha', user: req.user });
+        throw new Error("Error en la conexión a la base de datos el Microservicio Alpha");
+        //res.json({ message: 'Acceso exitoso al Microservicio Alpha', user: req.user });
     }
 
     /**
